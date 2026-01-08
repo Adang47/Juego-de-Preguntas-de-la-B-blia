@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas de la Bíblia</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<header class="main-header">
+		<nav class="navbar">
+			<div class="logo">Preguntas de la Bíblia</div>
+			<ul class="nav-links">
+				<li><a href="index.html" class="nav-link">Inicio</a></li>
+				<li><a href="#about" class="nav-link">Acerca</a></li>
+			</ul>
+		</nav>
+	</header>
+    <!-- Pantalla Hero (Inicio) -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">Pon a prueba tus conocimientos de la Biblia</p>
+            
+            <div class="mode-cards">
+                <div class="mode-card" data-mode="classic">
+                    <div class="mode-icon">📝</div>
+                    <h2>Modo Clásico</h2>
+                    <p>Responde preguntas de forma secuencial con tiempo limitado</p>
+                    <button class="btn btn-primary">Jugar</button>
+                </div>
+                
+                <div class="mode-card" data-mode="jeopardy">
+                    <div class="mode-icon">🎯</div>
+                    <h2>JEOPARDY</h2>
+                    <p>Elige preguntas del tablero según su dificultad y puntos</p>
+                    <button class="btn btn-primary">Jugar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Configuración -->
+    <div id="configModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Configuración del Juego</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            
+            <form id="configForm" class="config-form">
+                <!-- Categorías -->
+                <div class="form-group">
+                    <label>Categorías (selecciona al menos una):</label>
+                    <div id="categoriesContainer" class="categories-grid">
+                        <!-- Se llenarán dinámicamente desde app.js -->
+                    </div>
+                    <span class="error-message" id="categoriesError"></span>
+                </div>
+
+                <!-- Número de Preguntas (solo Modo Clásico) -->
+                <div class="form-group" id="questionsGroup">
+                    <label for="numQuestions">Número de preguntas:</label>
+                    <div class="slider-container">
+                        <input type="range" id="numQuestions" min="5" max="50" value="10" step="1">
+                        <span id="questionsValue" class="slider-value">10</span>
+                    </div>
+                </div>
+
+                <!-- Tiempo por Pregunta -->
+                <div class="form-group">
+                    <label for="timePerQuestion">Tiempo por pregunta (segundos):</label>
+                    <div class="slider-container">
+                        <input type="range" id="timePerQuestion" min="8" max="45" value="25" step="1">
+                        <span id="timeValue" class="slider-value">25s</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">Comenzar Juego</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Área de Juego -->
+    <section id="gameArea" class="game-area hidden">
+        <div class="game-header">
+			<button id="backButton" class="btn btn-salir">Salir de la partida</button>
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">Puntos:</span>
+                    <span id="score" class="stat-value">0</span>
+                </div>
+                <div class="stat" id="timerContainer">
+                    <span class="stat-label">Tiempo:</span>
+                    <span id="timer" class="stat-value">25</span>
+                </div>
+                <div class="stat" id="progressContainer">
+                    <span class="stat-label">Progreso:</span>
+                    <span id="progress" class="stat-value">0/10</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="gameContent" class="game-content">
+            <!-- El contenido se llenará dinámicamente según el modo de juego -->
+        </div>
+    </section>
+
+    <!-- Pantalla de Resultados -->
+    <section id="resultsScreen" class="results-screen hidden">
+        <div class="results-content">
+            <h2 class="results-title">¡Juego Terminado!</h2>
+            <div class="results-score">
+                <div class="score-circle">
+                    <span id="finalScore" class="final-score">0</span>
+                    <span class="score-label">puntos</span>
+                </div>
+            </div>
+            <div class="results-stats">
+                <div class="result-stat">
+                    <span class="result-label">Respuestas Correctas:</span>
+                    <span id="correctAnswers" class="result-value">0</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-label">Respuestas Incorrectas:</span>
+                    <span id="incorrectAnswers" class="result-value">0</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-label">Precisión:</span>
+                    <span id="accuracy" class="result-value">0%</span>
+                </div>
+            </div>
+            <div class="results-actions">
+                <button id="playAgainButton" class="btn btn-primary btn-large">Jugar de Nuevo</button>
+                <button id="backToMenuButton" class="btn btn-secondary">Volver al Menú</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/app.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/jeopardy.js"></script>
+</body>
+</html>
